@@ -1,7 +1,15 @@
 package me.kiuber.base.utils;
 
 import android.content.Context;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Timer;
+
+import me.kiuber.base.R;
 
 /**
  * Created 2017/4/28 0028 22:47
@@ -11,19 +19,64 @@ import android.widget.Toast;
 
 public class ToastUtil {
 
-    public static void showShort(Context context, Object text) {
+    private static ToastUtil instance;
+    private        Timer     mShowTimer;
+    private        Timer     mCancelTimer;
+
+    public static ToastUtil get() {
+        if (instance == null) {
+            instance = new ToastUtil();
+        }
+        return instance;
+    }
+
+    /**
+     * 显示短Toast
+     *
+     * @param context
+     * @param text
+     */
+    public Toast showShortToast(Context context, Object text) {
         if (text != null) {
-            Toast.makeText(context, String.valueOf(text), Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(context, String.valueOf(text), Toast.LENGTH_SHORT);
+            toast.show();
+            return toast;
         } else {
-            Toast.makeText(context, "吐司文本错误", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(context, "Toast文本为null", Toast.LENGTH_SHORT);
+            toast.show();
+            return toast;
         }
     }
 
-    public static void showLong(Context context, Object text) {
+    /**
+     * 显示长Toast
+     *
+     * @param context
+     * @param text
+     */
+    public void showLongToast(Context context, Object text) {
         if (text != null) {
             Toast.makeText(context, String.valueOf(text), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(context, "吐司文本错误", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Toast文本为null", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void showSuccessToast(Context context) {
+        Toast        toast = new Toast(context);
+        LinearLayout view  = (LinearLayout) View.inflate(context, R.layout.view_toast_success, null);
+        toast.setView(view);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
+    public void showSuccessToast(Context context, String msg) {
+        Toast        toast = new Toast(context);
+        LinearLayout view  = (LinearLayout) View.inflate(context, R.layout.view_toast_success, null);
+        TextView     tvMsg = (TextView) view.findViewById(R.id.tv_msg);
+        tvMsg.setText(msg);
+        toast.setView(view);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

@@ -21,7 +21,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="permissionTest"
+        android:text="权限"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="toastTest"
-        android:text="吐司测试"/>
+        android:text="提示测试"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="dialogTest"
+        android:text="对话框测试"/>
 
 </LinearLayout>

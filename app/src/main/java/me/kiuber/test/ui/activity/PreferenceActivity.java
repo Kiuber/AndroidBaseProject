@@ -97,6 +97,6 @@ public class PreferenceActivity extends AppCompatActivity {
 
     public void clear(View view) {
         boolean clear = PreferenceUtil.clear(this, PreferenceUtil.FILE_NAME_APP_CONFIG);
-        ToastUtil.showShort(MyContextHolder.getContext(), clear);
+        ToastUtil.get().showShortToast(MyContextHolder.getContext(), clear);
     }
 }
