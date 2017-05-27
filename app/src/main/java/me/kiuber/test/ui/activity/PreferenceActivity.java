@@ -14,7 +14,6 @@ import java.util.Set;
 
 import me.kiuber.base.utils.PreferenceUtil;
 import me.kiuber.base.utils.ToastUtil;
-import me.kiuber.test.MyContextHolder;
 import me.kiuber.test.R;
 
 /**
@@ -48,19 +47,19 @@ public class PreferenceActivity extends AppCompatActivity {
         key = key.equals("") ? "key值" : key;
         String value = mEtValue.getText().toString();
         value = value.equals("") ? "value值" : value;
-        PreferenceUtil.putOneValue(this, PreferenceUtil.FILE_NAME_APP_CONFIG, key, value);
+        PreferenceUtil.get().putOneValue(PreferenceUtil.FILE_NAME_APP_CONFIG, key, value);
     }
 
     public void readTest(View view) {
         String key = mEtKey.getText().toString();
         key = key.equals("") ? "key值" : key;
-        String oneValue = PreferenceUtil.getOneValue(this, PreferenceUtil.FILE_NAME_APP_CONFIG, key);
+        String oneValue = PreferenceUtil.get().getOneValue(PreferenceUtil.FILE_NAME_APP_CONFIG, key);
         mTvResult.setText(oneValue);
     }
 
     public void readAll(View view) {
-        Map<String, ?> all = PreferenceUtil.getAll(this, PreferenceUtil.FILE_NAME_APP_CONFIG);
-        String result = "";
+        Map<String, ?> all    = PreferenceUtil.get().getAll(PreferenceUtil.FILE_NAME_APP_CONFIG);
+        String         result = "";
         assert all != null;
         for (Map.Entry<String, ?> entry : all.entrySet()) {
             result = result + entry.getKey() + " : " + entry.getValue() + "\n";
@@ -75,7 +74,7 @@ public class PreferenceActivity extends AppCompatActivity {
         keys.add("3");
         keys.add("4");
         keys.add("5");
-        Map<String, Object> multipleValue = PreferenceUtil.getMultipleValue(this, PreferenceUtil.FILE_NAME_APP_CONFIG, keys);
+        Map<String, Object> multipleValue = PreferenceUtil.get().getMultipleValue(PreferenceUtil.FILE_NAME_APP_CONFIG, keys);
 
         String result = "";
         assert multipleValue != null;
@@ -92,11 +91,11 @@ public class PreferenceActivity extends AppCompatActivity {
         map.put("3", 10.00000F);
         map.put("4", 521);
         map.put("5", 10000000000L);
-        boolean b = PreferenceUtil.putMultipleValue(this, PreferenceUtil.FILE_NAME_APP_CONFIG, map);
+        boolean b = PreferenceUtil.get().putMultipleValue(PreferenceUtil.FILE_NAME_APP_CONFIG, map);
     }
 
     public void clear(View view) {
-        boolean clear = PreferenceUtil.clear(this, PreferenceUtil.FILE_NAME_APP_CONFIG);
-        ToastUtil.get().showShortToast(MyContextHolder.getContext(), clear);
+        boolean clear = PreferenceUtil.get().clear(PreferenceUtil.FILE_NAME_APP_CONFIG);
+        ToastUtil.get().showShortToast(clear);
     }
 }

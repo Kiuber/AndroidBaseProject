@@ -115,31 +115,31 @@ public class PermissionActivity extends PermissionUtil implements CompoundButton
 
 
     public void requestTest(View view) {
-        request(this, ListUtil.get().toArray(mPermissionList), false, new PermissionUtil.MyPermissionListener() {
+        request(ListUtil.get().toArray(mPermissionList), new PermissionUtil.MyPermissionListener() {
             @Override
             public void onGranted() {
-                ToastUtil.get().showShortToast(PermissionActivity.this, "所有权限授权成功成功");
+                ToastUtil.get().showShortToast("所有权限授权成功成功");
             }
 
             @Override
             public void onDenied(String[] deniedPermission) {
                 String s = Arrays.toString(deniedPermission);
-                DialogUtil.get().showNormalTipDialog(PermissionActivity.this, false, "未授权的权限有：" + s);
+                DialogUtil.get().showNormalTipDialog(false, "未授权的权限有：" + s);
             }
         });
     }
 
     public void requestForceTest(View view) {
-        request(this, ListUtil.get().toArray(mPermissionList), true, new PermissionUtil.MyPermissionListener() {
+        request(ListUtil.get().toArray(mPermissionList), new PermissionUtil.MyPermissionListener() {
             @Override
             public void onGranted() {
-                ToastUtil.get().showShortToast(PermissionActivity.this, "所有权限授权成功成功");
+                ToastUtil.get().showShortToast("所有权限授权成功成功");
             }
 
             @Override
             public void onDenied(String[] deniedPermission) {
                 String s = Arrays.toString(deniedPermission);
-                ToastUtil.get().showShortToast(PermissionActivity.this, s);
+                ToastUtil.get().showShortToast(s);
             }
         });
     }

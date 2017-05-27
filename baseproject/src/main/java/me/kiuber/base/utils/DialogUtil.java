@@ -23,7 +23,6 @@ public class DialogUtil {
     public static final String DIALOG_TITLE_WARM    = "警告";
     public static final String DIALOG_POSITIVE_KNOW = "知道了";
 
-
     public static DialogUtil get() {
         if (instance == null) {
             instance = new DialogUtil();
@@ -34,12 +33,12 @@ public class DialogUtil {
     /**
      * 显示一般提示对话框
      *
-     * @param context
      * @param cancelAble
      * @param message
      * @return
      */
-    public AlertDialog.Builder showNormalTipDialog(Context context, boolean cancelAble, String message) {
+    public AlertDialog.Builder showNormalTipDialog(boolean cancelAble, String message) {
+        Context             context = ActivityUtil.get().getTopActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("提示");
         builder.setMessage(message);
@@ -54,14 +53,14 @@ public class DialogUtil {
     /**
      * 显示可定制的提示对话框
      *
-     * @param context
      * @param cancelAble
      * @param title
      * @param message
      * @param positive
      * @return
      */
-    public AlertDialog.Builder showNormalTipDialog(Context context, boolean cancelAble, String title, String message, String positive) {
+    public AlertDialog.Builder showNormalTipDialog(boolean cancelAble, String title, String message, String positive) {
+        Context             context = ActivityUtil.get().getTopActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -76,13 +75,13 @@ public class DialogUtil {
     /**
      * 显示可以回调的对话框
      *
-     * @param context
      * @param cancelAble
      * @param message
      * @param listener
      * @return
      */
-    public AlertDialog.Builder showHandleTipDialog(Context context, boolean cancelAble, String title, String message, String positive, final MyOneButtonDialogOnClickListener listener) {
+    public AlertDialog.Builder showHandleTipDialog(boolean cancelAble, String title, String message, String positive, final MyOneButtonDialogOnClickListener listener) {
+        Context             context = ActivityUtil.get().getTopActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("提示");
         builder.setTitle(title);
@@ -103,7 +102,6 @@ public class DialogUtil {
     /**
      * 显示可定制的回调对话框
      *
-     * @param context
      * @param cancelAble
      * @param title
      * @param message
@@ -112,7 +110,8 @@ public class DialogUtil {
      * @param listener
      * @return
      */
-    public AlertDialog.Builder showHandleTipDialog(Context context, boolean cancelAble, String title, String message, String positive, String negative, final MyTwoButtonDialogOnClickListener listener) {
+    public AlertDialog.Builder showHandleTipDialog(boolean cancelAble, String title, String message, String positive, String negative, final MyTwoButtonDialogOnClickListener listener) {
+        Context             context = ActivityUtil.get().getTopActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -138,7 +137,6 @@ public class DialogUtil {
     /**
      * 显示可定制的回调对话框
      *
-     * @param context
      * @param cancelAble
      * @param title
      * @param message
@@ -147,7 +145,8 @@ public class DialogUtil {
      * @param listener
      * @return
      */
-    public AlertDialog.Builder showHandleTipDialog(Context context, boolean cancelAble, String title, String message, String positive, String neutral, String negative, final MyThreeButtonDialogOnClickListener listener) {
+    public AlertDialog.Builder showHandleTipDialog(boolean cancelAble, String title, String message, String positive, String neutral, String negative, final MyThreeButtonDialogOnClickListener listener) {
+        Context             context = ActivityUtil.get().getTopActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -179,12 +178,12 @@ public class DialogUtil {
     /**
      * 显示一般提示进度对话框
      *
-     * @param context
      * @param cancelAble
      * @param message
      * @return
      */
-    public ProgressDialog showNormalTipProgressDialog(Context context, boolean cancelAble, String message) {
+    public ProgressDialog showNormalTipProgressDialog(boolean cancelAble, String message) {
+        Context        context        = ActivityUtil.get().getTopActivity();
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(message);
         if (!cancelAble) {
@@ -197,13 +196,13 @@ public class DialogUtil {
     /**
      * 显示可定制的进度对话框
      *
-     * @param context
      * @param cancelAble
      * @param title
      * @param message
      * @return
      */
-    public ProgressDialog showNormalTipProgressDialog(Context context, boolean cancelAble, String title, String message) {
+    public ProgressDialog showNormalTipProgressDialog(boolean cancelAble, String title, String message) {
+        Context        context        = ActivityUtil.get().getTopActivity();
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setTitle(title);
         progressDialog.setMessage(message);

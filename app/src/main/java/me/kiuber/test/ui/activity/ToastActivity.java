@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import me.kiuber.base.utils.DialogUtil;
 import me.kiuber.base.utils.ToastUtil;
-import me.kiuber.test.MyContextHolder;
 import me.kiuber.test.R;
 
 /**
@@ -27,8 +26,8 @@ public class ToastActivity extends AppCompatActivity {
     }
 
     public void normalToast(View view) {
-        ToastUtil.get().showShortToast(MyContextHolder.getContext(), "短Toast");
-        ToastUtil.get().showLongToast(MyContextHolder.getContext(), "长Toast");
+        ToastUtil.get().showShortToast("短Toast");
+        ToastUtil.get().showLongToast("长Toast");
     }
 
 
@@ -50,10 +49,10 @@ public class ToastActivity extends AppCompatActivity {
     }
 
     public void successToast(View view) {
-        ToastUtil.get().showSuccessToast(this);
+        ToastUtil.get().showSuccessToast();
     }
 
     public void successToast1(View view) {
-        ToastUtil.get().showSuccessToast(this, "上传成功");
+        ToastUtil.get().showSuccessToast("上传成功");
     }
 }

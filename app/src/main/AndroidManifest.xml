@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
@@ -28,7 +29,6 @@
         </activity>
         <activity android:name=".ui.activity.PreferenceActivity"/>
         <activity android:name=".ui.activity.PermissionActivity"/>
-        <activity android:name=".ui.activity."/>
         <activity android:name=".ui.activity.DialogActivity"/>
         <activity android:name=".ui.activity.ToastActivity"/>
     </application>

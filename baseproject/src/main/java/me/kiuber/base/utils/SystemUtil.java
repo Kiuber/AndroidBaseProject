@@ -19,9 +19,10 @@ public class SystemUtil {
         return instance;
     }
 
-    public int[] getWidthAndHeight(Activity activity) {
-        int[] result = new int[2];
-        Point point  = new Point();
+    public int[] getWidthAndHeight() {
+        Activity activity = ActivityUtil.get().getTopActivity();
+        int[]    result   = new int[2];
+        Point    point    = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(point);
         result[0] = point.x;
         result[1] = point.y;

@@ -33,10 +33,10 @@ public class ToastUtil {
     /**
      * 显示短Toast
      *
-     * @param context
      * @param text
      */
-    public Toast showShortToast(Context context, Object text) {
+    public Toast showShortToast(Object text) {
+        Context context = ActivityUtil.get().getTopActivity();
         if (text != null) {
             Toast toast = Toast.makeText(context, String.valueOf(text), Toast.LENGTH_SHORT);
             toast.show();
@@ -51,10 +51,10 @@ public class ToastUtil {
     /**
      * 显示长Toast
      *
-     * @param context
      * @param text
      */
-    public void showLongToast(Context context, Object text) {
+    public void showLongToast(Object text) {
+        Context context = ActivityUtil.get().getTopActivity();
         if (text != null) {
             Toast.makeText(context, String.valueOf(text), Toast.LENGTH_LONG).show();
         } else {
@@ -62,7 +62,8 @@ public class ToastUtil {
         }
     }
 
-    public void showSuccessToast(Context context) {
+    public void showSuccessToast() {
+        Context context = ActivityUtil.get().getTopActivity();
         Toast        toast = new Toast(context);
         LinearLayout view  = (LinearLayout) View.inflate(context, R.layout.view_toast_success, null);
         toast.setView(view);
@@ -70,10 +71,11 @@ public class ToastUtil {
         toast.show();
     }
 
-    public void showSuccessToast(Context context, String msg) {
-        Toast        toast = new Toast(context);
-        LinearLayout view  = (LinearLayout) View.inflate(context, R.layout.view_toast_success, null);
-        TextView     tvMsg = (TextView) view.findViewById(R.id.tv_msg);
+    public void showSuccessToast(String msg) {
+        Context      context = ActivityUtil.get().getTopActivity();
+        Toast        toast   = new Toast(context);
+        LinearLayout view    = (LinearLayout) View.inflate(context, R.layout.view_toast_success, null);
+        TextView     tvMsg   = (TextView) view.findViewById(R.id.tv_msg);
         tvMsg.setText(msg);
         toast.setView(view);
         toast.setGravity(Gravity.CENTER, 0, 0);

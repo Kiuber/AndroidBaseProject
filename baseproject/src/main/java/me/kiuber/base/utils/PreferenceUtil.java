@@ -16,18 +16,26 @@ import java.util.Set;
 public class PreferenceUtil {
 
     public static final String FILE_NAME_APP_CONFIG = "app_config";
+    private static PreferenceUtil instance;
+
+    public static PreferenceUtil get() {
+        if (instance == null) {
+            instance = new PreferenceUtil();
+        }
+        return instance;
+    }
 
     /**
      * 存一个
      *
-     * @param context  上下文
      * @param fileName 文件名
      * @param key      键
      * @param value    值
      * @return
      */
-    public static boolean putOneValue(Context context, String fileName
+    public boolean putOneValue(String fileName
             , String key, String value) {
+        Context context = ActivityUtil.get().getTopActivity();
         if (key != null && value != null) {
             context.getSharedPreferences(fileName, Context.MODE_PRIVATE).edit()
                     .putString(key, value).apply();
@@ -40,12 +48,12 @@ public class PreferenceUtil {
     /**
      * 取一个
      *
-     * @param context  上下文
      * @param fileName 文件名
      * @param key      键
      * @return
      */
-    public static String getOneValue(Context context, String fileName, String key) {
+    public String getOneValue(String fileName, String key) {
+        Context           context     = ActivityUtil.get().getTopActivity();
         SharedPreferences preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         if (preferences != null) {
             return preferences.getString(key, "");
@@ -57,14 +65,14 @@ public class PreferenceUtil {
     /**
      * 存多个
      *
-     * @param context  上下文
      * @param fileName 文件名
      * @param map      键值集合
      * @return
      */
-    public static boolean putMultipleValue(Context context, String fileName
+    public boolean putMultipleValue(String fileName
             , Map<String, Object> map) {
-        SharedPreferences.Editor edit = context.getSharedPreferences(fileName, Context.MODE_PRIVATE).edit();
+        Context                  context = ActivityUtil.get().getTopActivity();
+        SharedPreferences.Editor edit    = context.getSharedPreferences(fileName, Context.MODE_PRIVATE).edit();
         if (edit != null && map != null) {
             for (HashMap.Entry<String, Object> entry : map.entrySet()) {
                 Object value = entry.getValue();
@@ -90,14 +98,14 @@ public class PreferenceUtil {
     /**
      * 取多个
      *
-     * @param context  上下文
      * @param fileName 文件名
      * @param keys     键结合
      * @return
      */
-    public static Map<String, Object> getMultipleValue(Context context, String fileName, Set<String> keys) {
-        SharedPreferences preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
-        Map<String, Object> values = new HashMap<>();
+    public Map<String, Object> getMultipleValue(String fileName, Set<String> keys) {
+        Context             context     = ActivityUtil.get().getTopActivity();
+        SharedPreferences   preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        Map<String, Object> values      = new HashMap<>();
         if (preferences != null && keys != null) {
             for (String next : keys) {
                 try {
@@ -125,11 +133,11 @@ public class PreferenceUtil {
     /**
      * 取所有
      *
-     * @param context  上下文
      * @param fileName 文件名
      * @return
      */
-    public static Map<String, ?> getAll(Context context, String fileName) {
+    public Map<String, ?> getAll(String fileName) {
+        Context           context     = ActivityUtil.get().getTopActivity();
         SharedPreferences preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         if (preferences != null) {
             return preferences.getAll();
@@ -138,7 +146,8 @@ public class PreferenceUtil {
         }
     }
 
-    public static boolean clear(Context context, String fileName) {
+    public boolean clear(String fileName) {
+        Context context = ActivityUtil.get().getTopActivity();
         try {
             context.getSharedPreferences(fileName, Context.MODE_PRIVATE).edit().clear().apply();
             return true;

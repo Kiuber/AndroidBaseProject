@@ -1,7 +1,7 @@
 package me.kiuber.base.utils;
 
 import java.util.HashSet;
-import java.util.List;
+import java.util.Iterator;
 
 /**
  * Created 2017/5/17 0017 21:21
@@ -20,14 +20,15 @@ public class SetUtil {
     }
 
     public String[] toArray(HashSet<String> permissions) {
-        String[] strings = permissions.toArray(new String[permissions.size()]);
-//        Iterator<String> iterator = permissions.iterator();
-//        int i = 0;
-//        while (iterator.hasNext()) {
-//            strings[i] = iterator.next();
-//            LogUtil.d("strings[i]", strings[i]);
-//            i++;
-//        }
+//        String[]         strings  = permissions.toArray(new String[permissions.size()]);
+        String[]         strings  = new String[permissions.size()];
+        Iterator<String> iterator = permissions.iterator();
+        int              i        = 0;
+        while (iterator.hasNext()) {
+            strings[i] = iterator.next();
+            LogUtil.d("strings[i]", strings[i]);
+            i++;
+        }
         return strings;
     }
 
