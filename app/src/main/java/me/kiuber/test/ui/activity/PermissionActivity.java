@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.kiuber.base.utils.ActivityUtil;
 import me.kiuber.base.utils.DialogUtil;
 import me.kiuber.base.utils.ListUtil;
 import me.kiuber.base.utils.PermissionUtil;
@@ -38,8 +39,15 @@ public class PermissionActivity extends PermissionUtil implements CompoundButton
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityUtil.get().addActivity(this);
         initView();
         initData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityUtil.get().removeActivity(this);
     }
 
     private void initData() {

@@ -36,10 +36,4 @@
         android:onClick="dialogTest"
         android:text="对话框测试"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="saoTest"
-        android:text="扫一扫测试"/>
-
 </LinearLayout>

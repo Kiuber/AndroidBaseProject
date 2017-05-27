@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import me.kiuber.base.utils.ActivityUtil;
 import me.kiuber.base.utils.DialogUtil;
 import me.kiuber.base.utils.ToastUtil;
 import me.kiuber.test.R;
@@ -19,7 +20,14 @@ public class DialogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityUtil.get().addActivity(this);
         initView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityUtil.get().removeActivity(this);
     }
 
     private void initView() {

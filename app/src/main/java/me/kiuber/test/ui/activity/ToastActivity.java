@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import me.kiuber.base.utils.ActivityUtil;
 import me.kiuber.base.utils.DialogUtil;
 import me.kiuber.base.utils.ToastUtil;
 import me.kiuber.test.R;
@@ -22,7 +23,14 @@ public class ToastActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityUtil.get().addActivity(this);
         setContentView(R.layout.activity_toast);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityUtil.get().removeActivity(this);
     }
 
     public void normalToast(View view) {

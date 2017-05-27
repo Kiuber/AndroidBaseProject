@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import me.kiuber.base.utils.ActivityUtil;
 import me.kiuber.base.utils.PreferenceUtil;
 import me.kiuber.base.utils.ToastUtil;
 import me.kiuber.test.R;
@@ -31,7 +32,14 @@ public class PreferenceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityUtil.get().addActivity(this);
         initView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityUtil.get().removeActivity(this);
     }
 
     private void initView() {
